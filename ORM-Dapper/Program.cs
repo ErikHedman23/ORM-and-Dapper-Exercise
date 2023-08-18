@@ -10,16 +10,35 @@ var config = new ConfigurationBuilder()
                 .Build();
 
 string connString = config.GetConnectionString("DefaultConnection");
-
 IDbConnection conn = new MySqlConnection(connString);
 
-var departmentRepo = new DapperDepartmentRepository(conn);
+#region Department Section
 
-departmentRepo.InsertDepartment("Erik's Department");
 
-var departments = departmentRepo.GetAllDepartments();
+//var departmentRepo = new DapperDepartmentRepository(conn);
 
-foreach (var department in departments)
+//departmentRepo.InsertDepartment("Erik's Department");
+
+//var departments = departmentRepo.GetAllDepartments();
+
+//foreach (var department in departments)
+//{
+//    Console.WriteLine($"{department.DepartmentID} | {department.Name}");
+//}
+
+#endregion
+
+#region Product Section
+
+var productRepository = new DapperProductRepository(conn);
+
+productRepository.CreateProduct("Erik's C# Code", 700.00, 1, true, 10000);
+
+var products = productRepository.GetAllProducts();
+
+foreach (var product in products)
 {
-    Console.WriteLine($"{department.DepartmentID} | {department.Name}");
+    Console.WriteLine($"{product.ProductID} | {product.Name} | {product.Price} | {product.CategoryID} | {product.OnSale} | {product.StockLevel}");
 }
+
+#endregion
