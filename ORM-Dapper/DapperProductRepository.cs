@@ -56,7 +56,7 @@ namespace ORM_Dapper
 
         public void DeleteProduct(int id)
         {
-            _conn.Execute("DELETE FROM sales WHERE ProductID = @id;", new { id = id});
+            _conn.Execute("DELETE FROM sales WHERE ProductID = @id;", new { id = id});  //in a real world scenario, you may not want to delete your products from every table.  You maya want to still know that someone sold a certain product even though they no longer sell/hold onto that product.
             _conn.Execute("DELETE FROM reviews WHERE ProductID = @id;", new { id = id });
             _conn.Execute("DELETE FROM products WHERE ProductID = @id;", new { id = id });
         }

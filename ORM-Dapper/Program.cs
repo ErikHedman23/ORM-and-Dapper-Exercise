@@ -17,6 +17,9 @@ IDbConnection conn = new MySqlConnection(connString);
 
 //var departmentRepo = new DapperDepartmentRepository(conn);
 
+//you could even do a consol.WriteLine("Enter a new department name:")
+//then do a var userInput = Console.ReadLine;  now you can insert that variable into InsertDepartments(userInput)...
+
 //departmentRepo.InsertDepartment("Erik's Department");
 
 //var departments = departmentRepo.GetAllDepartments();
@@ -31,8 +34,11 @@ IDbConnection conn = new MySqlConnection(connString);
 #region Product Section
 
 var productRepository = new DapperProductRepository(conn);
-
+#region Create new Product
 //productRepository.CreateProduct("Erik's C# Code", 700.00, 1, true, 10000);
+#endregion
+
+#region Update a Product
 //var productToUpdate = productRepository.GetProduct(944);
 
 //productToUpdate.StockLevel = 23;
@@ -42,9 +48,13 @@ var productRepository = new DapperProductRepository(conn);
 //productToUpdate.OnSale = false;
 
 //productRepository.UpdateProduct(productToUpdate); 
+#endregion
 
+#region Delete a Product
 //productRepository.DeleteProduct(944);
 
+
+#endregion
 var products = productRepository.GetAllProducts();
 
 foreach (var product in products)
