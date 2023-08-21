@@ -27,5 +27,31 @@ namespace ORM_Dapper
             _conn.Execute("INSERT INTO Products (Name, Price, CategoryID, OnSale, StockLevel) VALUES (@name, @price, @categoryID, @onSale, @stockLevel)",
                 new { name = name, price = price, categoryID = categoryID, onSale = onSale, stockLevel = stockLevel });
         }
+
+        public Product GetProduct(int id)
+        {
+            return _conn.QuerySingle<Product>("SELECT * FROM Products WHERE ProductID = @id;", new { id = id });
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            _conn.Execute("UPDATE products" +
+                " SET Name = @name," +
+                " Price = @price, " +
+                "CategoryID = @categoryID, " +
+                "OnSale = @onSale, " +
+                "StockLevel = @stockLevel" +
+                "WHERE ProductID = @id;",
+                new
+                {
+                    id = product.ProductID,
+                    name = product.Name,
+                    price = product.Price,
+                    categoryID = product.CategoryID,
+                    onSale = product.OnSale,
+                    stockLevel = product.StockLevel
+                });
+
+        }
     }
 }

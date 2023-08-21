@@ -15,16 +15,16 @@ IDbConnection conn = new MySqlConnection(connString);
 #region Department Section
 
 
-//var departmentRepo = new DapperDepartmentRepository(conn);
+var departmentRepo = new DapperDepartmentRepository(conn);
 
-//departmentRepo.InsertDepartment("Erik's Department");
+departmentRepo.InsertDepartment("Erik's Department");
 
-//var departments = departmentRepo.GetAllDepartments();
+var departments = departmentRepo.GetAllDepartments();
 
-//foreach (var department in departments)
-//{
-//    Console.WriteLine($"{department.DepartmentID} | {department.Name}");
-//}
+foreach (var department in departments)
+{
+    Console.WriteLine($"{department.DepartmentID} | {department.Name}");
+}
 
 #endregion
 
@@ -32,7 +32,16 @@ IDbConnection conn = new MySqlConnection(connString);
 
 var productRepository = new DapperProductRepository(conn);
 
-productRepository.CreateProduct("Erik's C# Code", 700.00, 1, true, 10000);
+//productRepository.CreateProduct("Erik's C# Code", 700.00, 1, true, 10000);
+//var productToUpdate = productRepository.GetProduct(944);
+ 
+//productToUpdate.StockLevel = 23;
+//productToUpdate.Name = "Erik's SQL Code From C#";
+//productToUpdate.Price = 25;
+//productToUpdate.CategoryID = 2;
+//productToUpdate.OnSale = false;
+
+//productRepository.UpdateProduct(productToUpdate);  *Still adjusting the update method at the moment*
 
 var products = productRepository.GetAllProducts();
 
@@ -42,3 +51,4 @@ foreach (var product in products)
 }
 
 #endregion
+
