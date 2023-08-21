@@ -40,7 +40,7 @@ namespace ORM_Dapper
                 " Price = @price, " +
                 "CategoryID = @categoryID, " +
                 "OnSale = @onSale, " +
-                "StockLevel = @stockLevel" +
+                "StockLevel = @stockLevel " +
                 "WHERE ProductID = @id;",
                 new
                 {
@@ -52,6 +52,13 @@ namespace ORM_Dapper
                     stockLevel = product.StockLevel
                 });
 
+        }
+
+        public void DeleteProduct(int id)
+        {
+            _conn.Execute("DELETE FROM sales WHERE ProductID = @id;", new { id = id});
+            _conn.Execute("DELETE FROM reviews WHERE ProductID = @id;", new { id = id });
+            _conn.Execute("DELETE FROM products WHERE ProductID = @id;", new { id = id });
         }
     }
 }
